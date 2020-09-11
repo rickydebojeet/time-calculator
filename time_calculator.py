@@ -27,9 +27,9 @@ def add_time(start, duration, dayOfWeek = None):
   #Minute calculation
   finalMinutes = minutes % 60
   hours = int(minutes / 60)
-  if len(finalMinutes) == 1:
+  if len(str(finalMinutes)) == 1:
     new_time = "0" + str(finalMinutes)
-  elif len(finalMinutes) == 2:
+  elif len(str(finalMinutes)) == 2:
     new_time = str(finalMinutes)
 
   #Days calculation
@@ -40,19 +40,23 @@ def add_time(start, duration, dayOfWeek = None):
   finalHours = hour % 12
   if int(hour / 12) == 0:
     finalAmPm = 'AM'
+    if finalHours == 0:
+      finalHours = 12
   else:
     finalAmPm = 'PM'
+    if finalHours == 0:
+      finalHours = 12
   new_time = str(finalHours) + ':' + new_time + ' ' + finalAmPm 
 
   #Calculation of day of day Of Week
   if not dayOfWeek == None:
     daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     pos = 0
-    for week in daysOfWeek:
-      if dayOfWeek == daysOfWeek:
+    while True:
+      if dayOfWeek.lower() == daysOfWeek[pos].lower():
         break
-      pos = pos + 1
-    newDayOfWeek = daysOfWeek[(pos + (days % 7)) % 7]
+      pos= pos + 1
+    newDayOfWeek = daysOfWeek[((pos + (days % 7)) % 7)]
     new_time = new_time + ", " + newDayOfWeek
 
   #Final output
