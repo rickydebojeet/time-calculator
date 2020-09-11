@@ -12,4 +12,10 @@ def add_time(start, duration, dayOfWeek = None):
 
   #Conversion of Start hours into minutes
   startMinute = startMinute + (60 * startHour)
+
+  #Conversion of duration hours into minutes
+  durationTime = duration.split(":")
+  durationHour = int(durationTime[0])
+  durationMinute = int(durationTime[1])
+  durationMinute = durationMinute + (60 * durationHour)
   return new_time
